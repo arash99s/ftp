@@ -1,2 +1,2 @@
 # ftp
-ftp with go
+ftp with node js
