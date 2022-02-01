@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>FTP client Application</title>
+  </head>
+  <body>
+    <h3 class="cd_class" id="cd"><a href="/dir">dir</a></h3>
+
+
+    <p id="demo"></p>
+
+    <script>
+      console.log(location.search.substr(1))
+
+
+ function findGetParameter(parameterName) {
+    var result = null,
+        tmp = [];
+    var items = location.search.substr(1).split("&");
+    for (var index = 0; index < items.length; index++) {
+        tmp = items[index].split("=");
+        if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+    }
+    return result;
+}
+
+var items = location.search.substr(1).split("&")
+var len = items.length
+
+var element = '<h3><a href="/cd?cd='+".."+'">'+"back to previous directory"+'</a></h3><hr>'
+document.getElementById("demo").insertAdjacentHTML("beforebegin",element)
+for (var i = 0 ; i < len ; i++){
+  element = '<a href="/cd?cd='+items[i]+'">'+items[i]+'</a><hr>'
+  document.getElementById("demo").insertAdjacentHTML("afterend",element)
+}
+    </script>
+
+<p>Click on the "Choose File" button to upload a file:</p>
+<form action="/upload" method="post" enctype="multipart/form-data">
+  <input type="file" id="myFile" name="xfile">
+  <input type="submit">
+</form>
+  </body>
+</html>
